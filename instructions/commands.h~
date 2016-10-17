@@ -1,0 +1,5 @@
+#define NOP  0x00
+#define ADD  0x01
+#define ADDI 0x02
+#define SUB  0x03
+#define J    0x33
