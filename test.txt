@@ -11,3 +11,8 @@ blez %r1 $255
 jal aaa
 jr %r7
 jalr %r1 %r4
+lb %r30 %r4 $255
+lbu %r30 %r4 $255
+lw %r30 %r4 $255
+sb %r30 %r4 $255
+sw %r30 %r4 $255

@@ -27,3 +27,8 @@
 #define JAL  34
 #define JR   35
 #define JALR 36
+#define LB   37
+#define LBU  38
+#define LW   39
+#define SB   40
+#define SW   41

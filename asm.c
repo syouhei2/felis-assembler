@@ -72,7 +72,7 @@ main(int argc, char **argv)
      /*cmd*/
      else if( strcmp(tok,"nop") == 0 ) {
         nop();
-      }else if( strcmp(tok,"add") == 0 ){
+      }else if( strcmp(tok,"add") == 0 ){//
         add();
       }else if( strcmp(tok,"addi") == 0  ){
         addi();
@@ -100,6 +100,16 @@ main(int argc, char **argv)
         jr();
       }else if( strcmp(tok,"jalr") == 0  ){
         jalr();        
+      }else if( strcmp(tok,"lb") == 0  ){
+        lb();        
+      }else if( strcmp(tok,"lbu") == 0  ){
+        lbu();        
+      }else if( strcmp(tok,"lw") == 0  ){
+        lw();        
+      }else if( strcmp(tok,"sb") == 0  ){
+        sb();        
+      }else if( strcmp(tok,"sw") == 0  ){
+        sw();        
       }
   }
 
