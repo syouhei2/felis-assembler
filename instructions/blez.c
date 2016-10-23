@@ -1,13 +1,11 @@
 #include "commands.h"
 
-void addi()
+void blez()
 {
         char *rs,*rt,*rd,*imm;
-
-        rd = strtok(NULL," ,");
         rs = strtok(NULL," ,");
         imm = strtok(NULL," \n");
 
-        write_bit(ADDI,6);
-        typeI(regn(rs),regn(rd),atoi(&imm[1]));
+        write_bit(BLEZ,6);
+        typeI(regn(rs),regn(rs),atoi(&imm[1]));
 }

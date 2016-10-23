@@ -4,4 +4,4 @@
 	./asm $FILENAME > bitfile.txt
 	python ascii2bin.py bitfile.txt code
 
-	rm bitfile.txt asm 
+	#rm bitfile.txt asm 

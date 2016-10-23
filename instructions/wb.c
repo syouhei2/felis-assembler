@@ -14,7 +14,7 @@ void write_bit(uint32_t a,int n)
     putchar('0');
   }}
 
-
+  putchar(' ');
   return;
 }
 

@@ -78,9 +78,28 @@ main(int argc, char **argv)
         addi();
       }else if( strcmp(tok,"sub") == 0  ){
         sub();
+      }else if( strcmp(tok,"lui") == 0  ){
+        lui();
+      }else if( strcmp(tok,"sll") == 0  ){
+        //sll();
+      }else if( strcmp(tok,"sllv") == 0  ){
+        //sllv();
+      }else if( strcmp(tok,"sra") == 0  ){
+        //sra();
+      }else if( strcmp(tok,"beq") == 0  ){
+        beq();        
+      }else if( strcmp(tok,"blez") == 0  ){
+        blez();        
       }else if( strcmp(tok,"j") == 0 ){
         addr = laddr [ mysearch( strtok(NULL,"\n"), label_set, p) ];
         j(addr);
+      }else if( strcmp(tok,"jal") == 0  ){
+        addr = laddr [ mysearch( strtok(NULL,"\n"), label_set, p) ];
+        jal(addr);
+      }else if( strcmp(tok,"jr") == 0  ){
+        jr();
+      }else if( strcmp(tok,"jalr") == 0  ){
+        jalr();        
       }
   }
 

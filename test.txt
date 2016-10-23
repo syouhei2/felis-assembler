@@ -5,3 +5,9 @@ aaa:
 addi %r30 %r4 $1555
 sub %r4 %r5 %r6
 j aaa
+lui %r4 $31
+beq %r1 %r3 $255
+blez %r1 $255
+jal aaa
+jr %r7
+jalr %r1 %r4
