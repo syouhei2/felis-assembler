@@ -110,6 +110,9 @@ main(int argc, char **argv)
         sb();        
       }else if( strcmp(tok,"sw") == 0  ){
         sw();        
+      }else if( strcmp(tok,"move") == 0  ){
+         /*疑似命令*/
+        move();        
       }
   }
 
