@@ -6,7 +6,7 @@ uint32_t regn(char *r)
 {
 
 
-  if(strcmp(r,"%ra") == 0){
+  if(strcmp(r,"$ra") == 0){
     return 31;
   }else {
     return atoi(&r[2]);

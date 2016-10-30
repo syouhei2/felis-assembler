@@ -7,5 +7,5 @@ void blez()
         imm = strtok(NULL," \n");
 
         write_bit(BLEZ,6);
-        typeI(regn(rs),regn(rs),atoi(&imm[1]));
+        typeI(regn(rs),regn(rs),atoi(imm));
 }

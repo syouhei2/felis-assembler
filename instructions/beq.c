@@ -8,5 +8,5 @@ void beq()
         imm = strtok(NULL," \n");
 
         write_bit(BEQ,6);
-        typeI(regn(rs),regn(rt),atoi(&imm[1]));
+        typeI(regn(rs),regn(rt),atoi(imm));
 }

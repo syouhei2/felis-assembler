@@ -9,5 +9,5 @@ void addi()
         imm = strtok(NULL," \n");
 
         write_bit(ADDI,6);
-        typeI(regn(rs),regn(rd),atoi(&imm[1]));
+        typeI(regn(rs),regn(rd),atoi(imm));
 }
