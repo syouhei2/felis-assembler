@@ -6,7 +6,7 @@ void lw()
 
         rd = strtok(NULL," ,");
         rs = strtok(NULL," ,");
-        imm = strtok(NULL," \n");
+        imm = strtok(NULL," ,\n");
 
         write_bit(LW,6);
         typeI(regn(rs),regn(rd),atoi(imm));

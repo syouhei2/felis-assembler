@@ -79,7 +79,7 @@ main(int argc, char **argv)
      else if( strcmp(tok,"nop") == 0 ) {
         nop();
       }else if( strcmp(tok,"halt") == 0  ){
-        break;        
+        halt();        
       }else if( strcmp(tok,"add") == 0 ){//
         add();
       }else if( strcmp(tok,"addi") == 0  ){
@@ -89,31 +89,31 @@ main(int argc, char **argv)
       }else if( strcmp(tok,"lui") == 0  ){
         lui();
       }else if( strcmp(tok,"sll") == 0  ){
-        //sll();
+        sll();
       }else if( strcmp(tok,"sllv") == 0  ){
-        //sllv();
+        sllv();
       }else if( strcmp(tok,"sra") == 0  ){
-        //sra();
+        sra();
       }else if( strcmp(tok,"srav") == 0  ){
-        //srav();
+        srav();
       }else if( strcmp(tok,"srl") == 0  ){
-        //srl();
+        srl();
       }else if( strcmp(tok,"srlv") == 0  ){
-        //srlv();
+        srlv();
       }else if( strcmp(tok,"and") == 0  ){
-        //and();
+        and();
       }else if( strcmp(tok,"andi") == 0  ){
-        //andi();
+        andi();
       }else if( strcmp(tok,"or") == 0  ){
-        //or();
+        or();
       }else if( strcmp(tok,"ori") == 0  ){
-        //ori();
+        ori();
       }else if( strcmp(tok,"xor") == 0  ){
-        //xor();
+        xor();
       }else if( strcmp(tok,"xori") == 0  ){
-        //xori();
+        xori();
       }else if( strcmp(tok,"nor") == 0  ){
-        //nor();
+        nor();
       }else if( strcmp(tok,"div") == 0  ){
         //div();
       }else if( strcmp(tok,"divu") == 0  ){

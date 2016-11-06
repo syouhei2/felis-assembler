@@ -8,7 +8,7 @@ void sub()
 
         rd = strtok(NULL," ,");
         rs = strtok(NULL," ,");
-        rt = strtok(NULL," \n");
+        rt = strtok(NULL," ,\n");
 
         write_bit(SUB,6);
         typeR(regn(rs),regn(rt),regn(rd),0);

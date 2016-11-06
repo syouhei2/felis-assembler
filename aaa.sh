@@ -1,5 +1,6 @@
 
 	read FILENAME
+        rm code
 	make
 	./asm $FILENAME > bitfile.txt
 	python ascii2bin.py bitfile.txt code

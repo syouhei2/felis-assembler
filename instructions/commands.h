@@ -2,16 +2,16 @@
 #include <string.h>
 #include <stdint.h>
 
-#define NOP  00
-#define ADD  01
-#define ADDI 02
-#define SUB  03
-#define LUI  04
-#define SLL  05
-#define SLLV 06
-#define SRA  07
-#define SRAV 08
-#define SRL  09
+#define NOP  0
+#define ADD  1
+#define ADDI 2
+#define SUB  3
+#define LUI  4
+#define SLL  5
+#define SLLV 6
+#define SRA  7
+#define SRAV 8
+#define SRL  9
 #define SRLV 10
 #define AND  11
 #define ANDI 12

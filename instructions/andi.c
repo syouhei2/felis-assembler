@@ -1,12 +1,13 @@
 #include "commands.h"
 
-void beq()
+void andi()
 {
         char *rs,*rt,*rd,*imm;
+
+        rd = strtok(NULL," ,");
         rs = strtok(NULL," ,");
-        rt = strtok(NULL," ,");
         imm = strtok(NULL," ,\n");
 
-        write_bit(BEQ,6);
-        typeI(regn(rs),regn(rt),atoi(imm)/4);
+        write_bit(ANDI,6);
+        typeI(regn(rs),regn(rd),atoi(imm));
 }
