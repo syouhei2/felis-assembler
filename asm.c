@@ -135,7 +135,7 @@ main(int argc, char **argv)
       }else if( strcmp(tok,"blez") == 0  ){
         blez();        
       }else if( strcmp(tok,"bgtz") == 0  ){
-        //bgtz();
+        bgtz();
       }else if( strcmp(tok,"blez") == 0  ){
         //blez();
       }else if( strcmp(tok,"bltz") == 0  ){
