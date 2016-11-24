@@ -90,16 +90,10 @@ main(int argc, char **argv)
         lui();
       }else if( strcmp(tok,"sll") == 0  ){
         sll();
-      }else if( strcmp(tok,"sllv") == 0  ){
-        sllv();
       }else if( strcmp(tok,"sra") == 0  ){
         sra();
-      }else if( strcmp(tok,"srav") == 0  ){
-        srav();
       }else if( strcmp(tok,"srl") == 0  ){
         srl();
-      }else if( strcmp(tok,"srlv") == 0  ){
-        srlv();
       }else if( strcmp(tok,"and") == 0  ){
         and();
       }else if( strcmp(tok,"andi") == 0  ){
@@ -115,35 +109,23 @@ main(int argc, char **argv)
       }else if( strcmp(tok,"nor") == 0  ){
         nor();
       }else if( strcmp(tok,"div") == 0  ){
-        //div();
-      }else if( strcmp(tok,"divu") == 0  ){
-        //divu();
+        div();
       }else if( strcmp(tok,"mult") == 0  ){
-        //mult();
-      }else if( strcmp(tok,"multu") == 0  ){
-        //multu();
-      }else if( strcmp(tok,"mfhi") == 0  ){
-        //mfhi();
-      }else if( strcmp(tok,"mflo") == 0  ){
-        //mflo();
-      }else if( strcmp(tok,"mthi") == 0  ){
-        //mthi();
-      }else if( strcmp(tok,"mtlo") == 0  ){
-        //mtlo();
+        mult();
       }else if( strcmp(tok,"beq") == 0  ){
         beq();        
-      }else if( strcmp(tok,"blez") == 0  ){
-        blez();        
+      }else if( strcmp(tok,"bgez") == 0  ){
+        bgez();        
       }else if( strcmp(tok,"bgtz") == 0  ){
         bgtz();
       }else if( strcmp(tok,"blez") == 0  ){
-        //blez();
+        blez();
       }else if( strcmp(tok,"bltz") == 0  ){
-        //bltz();
+        bltz();
       }else if( strcmp(tok,"bgezal") == 0  ){
-        //bgezal();
+        bgezal();
       }else if( strcmp(tok,"bltzal") == 0  ){
-        //bltzal();
+        bltzal();
       }else if( strcmp(tok,"j") == 0 ){
         addr = laddr [ mysearch( strtok(NULL," \n"), label_set, p) ];
         j(addr);
@@ -154,24 +136,18 @@ main(int argc, char **argv)
         jr();
       }else if( strcmp(tok,"jalr") == 0  ){
         jalr();        
-      }else if( strcmp(tok,"lb") == 0  ){
-        lb();        
-      }else if( strcmp(tok,"lbu") == 0  ){
-        lbu();        
       }else if( strcmp(tok,"lw") == 0  ){
         lw();        
-      }else if( strcmp(tok,"sb") == 0  ){
-        sb();        
       }else if( strcmp(tok,"sw") == 0  ){
         sw();        
       }else if( strcmp(tok,"abs.s") == 0  ){
-        //abs.s();
+        abs_s();
       }else if( strcmp(tok,"neg.s") == 0  ){
-        //neg.s();
+        neg_s();
       }else if( strcmp(tok,"add.s") == 0  ){
-        //add.s();
+        add_s();
       }else if( strcmp(tok,"sub.s") == 0  ){
-        //sub.s();
+        sub_s();
       }else if( strcmp(tok,"mul.s") == 0  ){
         //mul.s();
       }else if( strcmp(tok,"div.s") == 0  ){
@@ -181,7 +157,7 @@ main(int argc, char **argv)
       }else if( strcmp(tok,"cvt.w.s") == 0  ){
         //cvt.w.s();
       }else if( strcmp(tok,"mov.s") == 0  ){
-        //mov.s();
+        mov_s();
       }else if( strcmp(tok,"c.eq.s") == 0  ){
         //c.eq.s();
       }else if( strcmp(tok,"c.le.s") == 0  ){
@@ -193,9 +169,9 @@ main(int argc, char **argv)
       }else if( strcmp(tok,"bc1f") == 0  ){
         //bc1f();
       }else if( strcmp(tok,"lwc1") == 0  ){
-        //lwc1();
+        lwc1();
       }else if( strcmp(tok,"swc1") == 0  ){
-        //swc1();
+        swc1();
       }else if( strcmp(tok,"mtc1") == 0  ){
         //mtc1();
       }else if( strcmp(tok,"mfc1") == 0  ){

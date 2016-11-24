@@ -1,5 +1,5 @@
 main:
-  addi $r2, $r0, 2
+  addi $r2, $r0, 10
   jal fib
   halt
 
