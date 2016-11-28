@@ -149,33 +149,35 @@ main(int argc, char **argv)
       }else if( strcmp(tok,"sub.s") == 0  ){
         sub_s();
       }else if( strcmp(tok,"mul.s") == 0  ){
-        //mul.s();
+        mul_s();
       }else if( strcmp(tok,"div.s") == 0  ){
-        //div.s();
+        div_s();
       }else if( strcmp(tok,"cvt.s.w") == 0  ){
-        //cvt.s.w();
+        cvt_s_w();
       }else if( strcmp(tok,"cvt.w.s") == 0  ){
-        //cvt.w.s();
+        cvt_w_s();
       }else if( strcmp(tok,"mov.s") == 0  ){
         mov_s();
       }else if( strcmp(tok,"c.eq.s") == 0  ){
-        //c.eq.s();
+        c_eq_s();
       }else if( strcmp(tok,"c.le.s") == 0  ){
-        //c.le.s();
+        c_le_s();
       }else if( strcmp(tok,"c.lt.s") == 0  ){
-        //c.lt.s();
+        c_lt_s();
       }else if( strcmp(tok,"bc1t") == 0  ){
-        //bc1t();
+        addr = laddr [ mysearch( strtok(NULL," \n"), label_set, p) ];
+        bc1t(addr);
       }else if( strcmp(tok,"bc1f") == 0  ){
-        //bc1f();
+        addr = laddr [ mysearch( strtok(NULL," \n"), label_set, p) ];
+        bc1f(addr);
       }else if( strcmp(tok,"lwc1") == 0  ){
         lwc1();
       }else if( strcmp(tok,"swc1") == 0  ){
         swc1();
       }else if( strcmp(tok,"mtc1") == 0  ){
-        //mtc1();
+        mtc1();
       }else if( strcmp(tok,"mfc1") == 0  ){
-        //mfc1();
+        mfc1();
       }else if( strcmp(tok,"move") == 0  ){
          /*疑似命令*/
         move();        
