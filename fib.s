@@ -1,3 +1,5 @@
+.text
+
 main:
   addi $r2, $r0, 10
   jal fib
@@ -38,4 +40,9 @@ rtn1:
   addi $r1, $r0, 1
   addi $r30, $r30, -16
   jr $ra
+
+.data
+
+L1:
+  .float 2.0000 
 
