@@ -194,7 +194,7 @@ main(int argc, char **argv)
         mtc1();
       }else if( strcmp(tok,"mfc1") == 0  ){
         mfc1();
-      }else if( strcmp(tok,"move") == 0  ){
+      }else if( strcmp(tok,"mov") == 0  ){
          /*疑似命令*/
         move();        
       }else{
@@ -206,7 +206,7 @@ main(int argc, char **argv)
   }
 
   close(fd);
-
+/*
   printf("******************data section******************\n");
   
   fd = fopen(argv[1],"rt");
@@ -214,11 +214,11 @@ main(int argc, char **argv)
     perror(argv[2]);
     return;
   }
-
-
+*/
+/*
   while( fgets(buf,255,fd) != NULL ){
    if(strlen(buf) > 1){
-     tok = strtok(buf," \n");
+     tok = strtok(buf," \n");*/
 
    /*assembla command*/
    /*  if (tok[0] == '.') {
@@ -226,9 +226,9 @@ main(int argc, char **argv)
        //else if( strcmp(tok,".text") == 0) dsec = 0;
      } */
    /*label*/
-      if ( tok[strlen(tok)-1] == ':' ){
-     }
-     /* data section */
+    //  if ( tok[strlen(tok)-1] == ':' ){
+     //}
+     /* data section *//*
      else if ( strcmp(tok,".float") == 0  ){
         tok = strtok(NULL," \n");
         u.f = atof( tok );
@@ -236,8 +236,8 @@ main(int argc, char **argv)
         printf("\n");
      }
     }
-  }
-  close(fd);
+  }*/
+  //close(fd);
 
   return;
 

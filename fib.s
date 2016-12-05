@@ -44,5 +44,5 @@ rtn1:
 .data
 
 L1:
-  .float 2.0000 
+  .float 2.0000
 
