@@ -1,12 +1,8 @@
 #include "commands.h"
 
-void bgtz()
+void bgtz(char *rs,int imm)
 {
-        char *rs,*rt,*rd,*imm;
-
-        rs = strtok(NULL," ,");
-        imm = strtok(NULL," ,\n");
 
         write_bit(BGTZ,6);
-        typeI(regn(rs),0,atoi(imm)/4);
+        typeI(regn(rs),0,imm);
 }

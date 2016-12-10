@@ -1,10 +1,26 @@
+_min_caml_start:
+
+    addi    r1 r0 10
+
+    sw  r31 r30 4
+
+    addi    r30 r30 4
+
+    jal fib.9
+
+    addi    r30 r30 -4
+
+    lw  r31 r30 4
+
+    halt
+
 fib.9:
 
     addi    r2 r0 1
 
     sub r25 r1 r2
 
-    blez    r25 ble_tail_else.23
+    blez    r25 92
 
     addi    r2 r0 1
 
@@ -56,16 +72,3 @@ ble_tail_else.23:
 
     jr  r31
 
-_min_caml_start:
-
-    addi    r1 r0 10
-
-    sw  r31 r30 4
-
-    addi    r30 r30 4
-
-    jal fib.9
-
-    addi    r30 r30 -4
-
-    lw  r31 r30 4

@@ -1,11 +1,8 @@
 #include "commands.h"
 
-void bgez()
+void bgez(char *rs,int imm)
 {
-        char *rs,*rt,*rd,*imm;
-        rs = strtok(NULL," ,");
-        imm = strtok(NULL," ,\n");
 
         write_bit(BGEZ,6);
-        typeI(regn(rs),regn(rs),atoi(imm)/4);
+        typeI(regn(rs),0,imm);
 }

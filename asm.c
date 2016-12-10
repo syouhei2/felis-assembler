@@ -13,7 +13,7 @@ main(int argc, char **argv)
 
   /*argment error*/
   if(argc != 2){
-    printf("usage: .txt\n");
+    printf("usage: ./asm *.s\n");
     return;
   }
 
@@ -23,7 +23,7 @@ main(int argc, char **argv)
   char *rs,*rt,*rd,*imm;
   char *br;
 
-  uint32_t dl,tl;
+  uint32_t dl=0,tl=1,cl=1;
 
   char label_set[255][255];
   uint32_t laddr[0xFF];
@@ -33,6 +33,8 @@ main(int argc, char **argv)
 
   union {float f;int i;} u;
   
+
+
 
    /*get input file discripter*/
   fd = fopen(argv[1],"rt");
@@ -70,6 +72,10 @@ main(int argc, char **argv)
 
   close(fd);
 
+  /*jump to start addr*/
+  addr = laddr [ mysearch( "_min_caml_start", label_set, p) ];
+  j(addr);
+
   fd = fopen(argv[1],"rt");
   if(fd == NULL){
     perror(argv[2]);
@@ -87,15 +93,21 @@ main(int argc, char **argv)
     if (tok[0] == '.') {
          //if(strcmp(tok,".data") == 0) dsec = 1;
          //else if( strcmp(tok,".text") == 0) dsec = 0;
+       cl -=1;
     } 
 
      /*label*/
     else if ( tok[strlen(tok)-1] == ':' ){ 
+      cl -=1;
     }
     else if( strcmp(tok,"nop") == 0 ) {
         nop();
       }else if( strcmp(tok,"halt") == 0  ){
         halt();        
+      }else if( strcmp(tok,"in") == 0 ) {
+        in();
+      }else if( strcmp(tok,"out") == 0 ) {
+        out();
       }else if( strcmp(tok,"add") == 0 ){//
         add();
       }else if( strcmp(tok,"addi") == 0  ){
@@ -129,19 +141,34 @@ main(int argc, char **argv)
       }else if( strcmp(tok,"mult") == 0  ){
         mult();
       }else if( strcmp(tok,"beq") == 0  ){
-        beq();        
+        rs   = strtok(NULL," ,\n");
+        rt   = strtok(NULL," ,\n");
+        addr = laddr [ mysearch( strtok(NULL," ,\n"), label_set, p) ];
+        beq( rs, rt, addr-cl );        
       }else if( strcmp(tok,"bgez") == 0  ){
-        bgez();        
+        rs   = strtok(NULL," ,\n");
+        addr = laddr [ mysearch( strtok(NULL," ,\n"), label_set, p) ];
+        bgez( rs, addr-cl );
       }else if( strcmp(tok,"bgtz") == 0  ){
-        bgtz();
+        rs   = strtok(NULL," ,\n");
+        addr = laddr [ mysearch( strtok(NULL," ,\n"), label_set, p) ];
+        bgtz( rs, addr-cl );
       }else if( strcmp(tok,"blez") == 0  ){
-        blez();
+        rs   = strtok(NULL," ,\n");
+        addr = laddr [ mysearch( strtok(NULL," ,\n"), label_set, p) ];
+        blez( rs, addr-cl );
       }else if( strcmp(tok,"bltz") == 0  ){
-        bltz();
+        rs   = strtok(NULL," ,\n");
+        addr = laddr [ mysearch( strtok(NULL," ,\n"), label_set, p) ];
+        bltz( rs, addr-cl );
       }else if( strcmp(tok,"bgezal") == 0  ){
-        bgezal();
+        rs   = strtok(NULL," ,\n");
+        addr = laddr [ mysearch( strtok(NULL," ,\n"), label_set, p) ];
+        bgezal( rs, addr-cl );
       }else if( strcmp(tok,"bltzal") == 0  ){
-        bltzal();
+        rs  = strtok(NULL," ,\n");
+        addr = laddr [ mysearch( strtok(NULL," ,\n"), label_set, p) ];
+        bltzal( rs, addr-cl );
       }else if( strcmp(tok,"j") == 0 ){
         addr = laddr [ mysearch( strtok(NULL," \n"), label_set, p) ];
         j(addr);
@@ -198,23 +225,27 @@ main(int argc, char **argv)
          /*疑似命令*/
         move();        
       }else{
-        printf("unknown mnemonic : %s",tok);
+        printf("unknown mnemonic\n : %s",tok);
         break;
-      }}
+      }
+
+      cl+=1;
+      }
      
     
   }
 
   close(fd);
-/*
-  printf("******************data section******************\n");
+
+  write_bit(0xFFFFFFFF,32);
+  printf("\n");
   
   fd = fopen(argv[1],"rt");
   if(fd == NULL){
     perror(argv[2]);
     return;
   }
-*/
+
 /*
   while( fgets(buf,255,fd) != NULL ){
    if(strlen(buf) > 1){

@@ -63,3 +63,5 @@
 #define MTC1 58
 #define MFC1 59
 #define HALT 60
+#define IN   61
+#define OUT  62

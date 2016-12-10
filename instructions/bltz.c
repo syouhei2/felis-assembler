@@ -1,11 +1,8 @@
 #include "commands.h"
 
-void bltz()
+void bltz(char *rs,int imm)
 {
-        char *rs,*rt,*rd,*imm;
-        rs = strtok(NULL," ,");
-        imm = strtok(NULL," ,\n");
 
         write_bit(BLTZ,6);
-        typeI(regn(rs),regn(rs),atoi(imm)/4);
+        typeI(regn(rs),0,imm);
 }
