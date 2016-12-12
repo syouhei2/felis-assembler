@@ -111,7 +111,15 @@ main(int argc, char **argv)
       }else if( strcmp(tok,"add") == 0 ){//
         add();
       }else if( strcmp(tok,"addi") == 0  ){
-        addi();
+        rd = strtok(NULL," ,");
+        rs = strtok(NULL," ,");
+        imm = strtok(NULL," ,\n");
+        if ( mysearch( imm, label_set, p ) == -1 ) {
+          addi(rs,rd,atoi(imm));
+        } else { /*constがラベルのとき*/
+          addr = laddr[  mysearch( imm, label_set, p ) ];
+          addi2(rs,rd,addr);
+        }
       }else if( strcmp(tok,"sub") == 0  ){
         sub();
       }else if( strcmp(tok,"lui") == 0  ){
