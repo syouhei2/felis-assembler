@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include "instructions/commands.h"
 
 #define TEXTSEC 0      //start addr of the text section (/4)
 #define DATASEC 10000  //start addr of the data section (/4)
@@ -151,7 +152,7 @@ int main(int argc, char** argv)
             } else if (strcmp(tok, "nor") == 0) {
                 nor();
             } else if (strcmp(tok, "div") == 0) {
-                //div();
+                mydiv();
             } else if (strcmp(tok, "mult") == 0) {
                 mult();
             } else if (strcmp(tok, "beq") == 0) {
