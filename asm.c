@@ -79,7 +79,7 @@ int main(int argc, char** argv)
     //opener(label_set);
     //opener2(laddr);
 
-    close(fd);
+    fclose(fd);
 
     /*jump to start addr*/
     addr = laddr[mysearch("_min_caml_start", label_set, p)];
@@ -248,7 +248,7 @@ int main(int argc, char** argv)
         }
     }
 
-    close(fd);
+    fclose(fd);
 
     write_bit(0xFFFFFFFF, 32);
     printf("\n");
@@ -281,7 +281,7 @@ int main(int argc, char** argv)
      }
     }
   }*/
-    //close(fd);
+    //fclose(fd);
 
     return 0;
 }

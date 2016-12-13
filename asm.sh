@@ -8,6 +8,7 @@ if [ $# -lt 1 ]; then
 fi
 
 make
+echo "*** assembler running"
 ./asm $1 > code.txt
 python ascii2bin.py code.txt code.bin
-rm code.txt
+echo "*** done"

@@ -1,5 +1,6 @@
 *~
-./asm
+asm
+code.txt
 code.bin
 
 # Object files
