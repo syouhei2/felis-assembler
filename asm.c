@@ -203,8 +203,12 @@ int main(int argc, char** argv)
                 jalr();
             } else if (strcmp(tok, "lw") == 0) {
                 lw();
+            } else if (strcmp(tok, "lwo") == 0) {
+                lwo();
             } else if (strcmp(tok, "sw") == 0) {
                 sw();
+            } else if (strcmp(tok, "lw") == 0) {
+                swo();
             } else if (strcmp(tok, "abs.s") == 0) {
                 abs_s();
             } else if (strcmp(tok, "neg.s") == 0) {
@@ -223,22 +227,14 @@ int main(int argc, char** argv)
                 cvt_w_s();
             } else if (strcmp(tok, "mov.s") == 0) {
                 mov_s();
-            } else if (strcmp(tok, "c.eq.s") == 0) {
-                c_eq_s();
-            } else if (strcmp(tok, "c.le.s") == 0) {
-                c_le_s();
-            } else if (strcmp(tok, "c.lt.s") == 0) {
-                c_lt_s();
-            } else if (strcmp(tok, "bc1t") == 0) {
-                addr = laddr[mysearch(strtok(NULL, " \n"), label_set, p)];
-                bc1t(addr);
-            } else if (strcmp(tok, "bc1f") == 0) {
-                addr = laddr[mysearch(strtok(NULL, " \n"), label_set, p)];
-                bc1f(addr);
             } else if (strcmp(tok, "lwc1") == 0) {
                 lwc1();
+            } else if (strcmp(tok, "lw") == 0) {
+                lwoc1();
             } else if (strcmp(tok, "swc1") == 0) {
                 swc1();
+            } else if (strcmp(tok, "lw") == 0) {
+                swoc1();
             } else if (strcmp(tok, "mtc1") == 0) {
                 mtc1();
             } else if (strcmp(tok, "mfc1") == 0) {
