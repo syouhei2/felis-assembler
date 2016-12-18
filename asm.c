@@ -185,13 +185,20 @@ int main(int argc, char** argv)
                 addr = laddr[mysearch(strtok(NULL, " ,\n"), label_set, p)];
                 bltzal(rs, addr - cl);
             } else if (strcmp(tok, "j") == 0) {
-                addr = laddr[mysearch(strtok(NULL, " \n"), label_set, p)];
-                j(addr);
+               imm = strtok(NULL, " \n");
+               if (mysearch(imm, label_set, p) == -1) {
+                 /* j r1 */
+                 jr(imm);
+               } else {
+                 addr = laddr[mysearch(imm, label_set, p)];
+                 j(addr); 
+               }
             } else if (strcmp(tok, "jal") == 0) {
                 addr = laddr[mysearch(strtok(NULL, " \n"), label_set, p)];
                 jal(addr);
             } else if (strcmp(tok, "jr") == 0) {
-                jr();
+                rs = strtok(NULL, " \n");
+                jr(rs);
             } else if (strcmp(tok, "jalr") == 0) {
                 jalr();
             } else if (strcmp(tok, "lw") == 0) {

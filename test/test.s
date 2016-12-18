@@ -11,3 +11,6 @@ label:
 addi r1 r0 111
 addi r1 r0 _min_caml_start
 halt
+
+j label
+j r1

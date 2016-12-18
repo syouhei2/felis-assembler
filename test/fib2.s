@@ -12,7 +12,7 @@ fib.9:
 
     sw  r1 r30 0
 
-    sw  r31 r30 8
+    sw  r31 r30 4
 
     addi    r30 r30 8
 
@@ -22,7 +22,7 @@ fib.9:
 
     addi    r30 r30 -8
 
-    lw  r31 r30 8
+    lw  r31 r30 4
 
     addi    r2 r0 2
 
@@ -32,7 +32,7 @@ fib.9:
 
     sw  r1 r30 4
 
-    sw  r31 r30 12
+    sw  r31 r30 8
 
     addi    r30 r30 12
 
@@ -42,7 +42,7 @@ fib.9:
 
     addi    r30 r30 -12
 
-    lw  r31 r30 12
+    lw  r31 r30 8
 
     lw r2 r30 4
 
@@ -60,7 +60,7 @@ _min_caml_start:
 
     addi    r1 r0 10
 
-    sw  r31 r30 4
+    sw  r31 r30 0
 
     addi    r30 r30 4
 
@@ -68,6 +68,6 @@ _min_caml_start:
 
     addi    r30 r30 -4
 
-    lw  r31 r30 4
+    lw  r31 r30 0
 
-    halt
+halt
