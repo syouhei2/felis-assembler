@@ -4,8 +4,8 @@ void swc1()
 {
         char *rs,*fd,*imm;
 
-        fd = strtok(NULL," ,");
         rs = strtok(NULL," ,");
+        fd = strtok(NULL," ,");
         imm = strtok(NULL," ,\n");
 
         write_bit(SWC1,6);

@@ -49,7 +49,7 @@ int main(int argc, char** argv)
 
     while (fgets(buf, 255, fd) != NULL) {
         if (strlen(buf) > 1) {
-            tok = strtok(buf, " \n");
+            tok = strtok(buf, " \t\n");
 
             /*assembla command*/
             if (tok[0] == '.') {
@@ -94,7 +94,7 @@ int main(int argc, char** argv)
 
     while (fgets(buf, 255, fd) != NULL) {
         if (strlen(buf) > 1) {
-            tok = strtok(buf, " \n");
+            tok = strtok(buf, " \t\n");
 
 
             /*assembla command*/
@@ -118,9 +118,9 @@ int main(int argc, char** argv)
             } else if (strcmp(tok, "add") == 0) {  //
                 add();
             } else if (strcmp(tok, "addi") == 0) {
-                rd = strtok(NULL, " ,");
-                rs = strtok(NULL, " ,");
-                imm = strtok(NULL, " ,\n");
+                rs = strtok(NULL, " ,\t");
+                rd = strtok(NULL, " ,\t");
+                imm = strtok(NULL, " ,\t\n");
                 if (mysearch(imm, label_set, p) == -1) {
                     addi(rs, rd, atoi(imm));
                 } else { /*constがラベルのとき*/
@@ -156,36 +156,36 @@ int main(int argc, char** argv)
             } else if (strcmp(tok, "mult") == 0) {
                 mult();
             } else if (strcmp(tok, "beq") == 0) {
-                rs = strtok(NULL, " ,\n");
-                rt = strtok(NULL, " ,\n");
-                addr = laddr[mysearch(strtok(NULL, " ,\n"), label_set, p)];
+                rs = strtok(NULL, " ,\t\n");
+                rt = strtok(NULL, " ,\t\n");
+                addr = laddr[mysearch(strtok(NULL, " ,\t\n"), label_set, p)];
                 beq(rs, rt, addr - cl);
             } else if (strcmp(tok, "bgez") == 0) {
                 rs = strtok(NULL, " ,\n");
-                addr = laddr[mysearch(strtok(NULL, " ,\n"), label_set, p)];
+                addr = laddr[mysearch(strtok(NULL, " ,\t\n"), label_set, p)];
                 bgez(rs, addr - cl);
             } else if (strcmp(tok, "bgtz") == 0) {
-                rs = strtok(NULL, " ,\n");
-                addr = laddr[mysearch(strtok(NULL, " ,\n"), label_set, p)];
+                rs = strtok(NULL, " ,\t\n");
+                addr = laddr[mysearch(strtok(NULL, " ,\t\n"), label_set, p)];
                 bgtz(rs, addr - cl);
             } else if (strcmp(tok, "blez") == 0) {
-                rs = strtok(NULL, " ,\n");
-                addr = laddr[mysearch(strtok(NULL, " ,\n"), label_set, p)];
+                rs = strtok(NULL, " ,\t\n");
+                addr = laddr[mysearch(strtok(NULL, " ,\t\n"), label_set, p)];
                 blez(rs, addr - cl);
             } else if (strcmp(tok, "bltz") == 0) {
-                rs = strtok(NULL, " ,\n");
-                addr = laddr[mysearch(strtok(NULL, " ,\n"), label_set, p)];
+                rs = strtok(NULL, " ,\t\n");
+                addr = laddr[mysearch(strtok(NULL, " ,\t\n"), label_set, p)];
                 bltz(rs, addr - cl);
             } else if (strcmp(tok, "bgezal") == 0) {
-                rs = strtok(NULL, " ,\n");
-                addr = laddr[mysearch(strtok(NULL, " ,\n"), label_set, p)];
+                rs = strtok(NULL, " ,\t\n");
+                addr = laddr[mysearch(strtok(NULL, " ,\t\n"), label_set, p)];
                 bgezal(rs, addr - cl);
             } else if (strcmp(tok, "bltzal") == 0) {
-                rs = strtok(NULL, " ,\n");
-                addr = laddr[mysearch(strtok(NULL, " ,\n"), label_set, p)];
+                rs = strtok(NULL, " ,\t\n");
+                addr = laddr[mysearch(strtok(NULL, " ,\t\n"), label_set, p)];
                 bltzal(rs, addr - cl);
             } else if (strcmp(tok, "j") == 0) {
-               imm = strtok(NULL, " \n");
+               imm = strtok(NULL, " \t\n");
                if (mysearch(imm, label_set, p) == -1) {
                  /* j r1 */
                  jr(imm);
@@ -194,10 +194,10 @@ int main(int argc, char** argv)
                  j(addr); 
                }
             } else if (strcmp(tok, "jal") == 0) {
-                addr = laddr[mysearch(strtok(NULL, " \n"), label_set, p)];
+                addr = laddr[mysearch(strtok(NULL, " \t\n"), label_set, p)];
                 jal(addr);
             } else if (strcmp(tok, "jr") == 0) {
-                rs = strtok(NULL, " \n");
+                rs = strtok(NULL, " \t\n");
                 jr(rs);
             } else if (strcmp(tok, "jalr") == 0) {
                 jalr();
@@ -265,7 +265,7 @@ int main(int argc, char** argv)
     /*
   while( fgets(buf,255,fd) != NULL ){
    if(strlen(buf) > 1){
-     tok = strtok(buf," \n");*/
+     tok = strtok(buf," \t\n");*/
 
     /*assembla command*/
     /*  if (tok[0] == '.') {
@@ -277,7 +277,7 @@ int main(int argc, char** argv)
     //}
     /* data section */ /*
      else if ( strcmp(tok,".float") == 0  ){
-        tok = strtok(NULL," \n");
+        tok = strtok(NULL," \t\n");
         u.f = atof( tok );
         write_bit (u.i,32);
         printf("\n");

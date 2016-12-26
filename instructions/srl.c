@@ -5,8 +5,8 @@
 void srl()
 {
   char *rs,*rd,*shift;
-  rd = strtok(NULL," ,");
   rs = strtok(NULL," ,");
+  rd = strtok(NULL," ,");
   shift = strtok(NULL," ,\n");
 
   write_bit(SRL,6);

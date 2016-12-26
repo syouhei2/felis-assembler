@@ -5,8 +5,8 @@
 void sll()
 {
   char *rs,*rd,*shift;
-  rd = strtok(NULL," ,");
   rs = strtok(NULL," ,");
+  rd = strtok(NULL," ,");
   shift = strtok(NULL," ,\n");
 
   write_bit(SLL,6);
