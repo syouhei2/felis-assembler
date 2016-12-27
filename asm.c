@@ -26,6 +26,7 @@ int main(int argc, char** argv)
     char* tok;
     char* rs, *rt, *rd, *imm;
     char* br;
+    char* ra = "r31";
 
     uint32_t dl = 0, tl = 1, cl = 1;
 
@@ -206,11 +207,7 @@ printf("#%s\n",argv[1]);
             } else if (strcmp(tok, "jal") == 0) {
                 imm = strtok(NULL, " \t\n");
                 if (mysearch(imm, label_set, p) == -1) {
-                 /* jal r1 */
-                  cl+=1;
-                  write_bit(ADDI,6);
-                  typeI( 0 ,31 ,(cl+1) );
-                  jr(imm);
+                  jalr(imm,ra);
                 } else {
                   addr = laddr[mysearch(imm, label_set, p)];
                   jal(addr); 
@@ -219,7 +216,9 @@ printf("#%s\n",argv[1]);
                 rs = strtok(NULL, " \t\n");
                 jr(rs);
             } else if (strcmp(tok, "jalr") == 0) {
-                jalr();
+                rs = strtok(NULL, " \t\n");
+                rt = strtok(NULL, " \t\n");
+                jalr(rs,rt);
             } else if (strcmp(tok, "lw") == 0) {
                 lw();
             } else if (strcmp(tok, "lwo") == 0) {

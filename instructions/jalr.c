@@ -2,13 +2,10 @@
 
 
 
-void jalr()
+void jalr(char *rs,char *rt)
 {
-  char *rs,*rt,*rd,*imm;
-  rs = strtok(NULL," ,");
-  rd = strtok(NULL," ,\n");
 
   write_bit(JALR,6);
-  typeR(regn(rs),0,regn(rd),0);
+  typeI(regn(rs),regn(rt),0);
 
 }
