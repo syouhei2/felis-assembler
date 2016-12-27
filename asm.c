@@ -9,6 +9,8 @@
 
 void opener(char[255][255]);
 void opener2(int[255]);
+void laddrfix(char[255][255],uint32_t[255],FILE *);
+
 
 int main(int argc, char** argv)
 {
@@ -79,19 +81,26 @@ int main(int argc, char** argv)
     //opener(label_set);
     //opener2(laddr);
 
-    fclose(fd);
+    //fclose(fd);
+printf("#%s\n",argv[1]);
+    rewind(fd);
+    laddrfix(label_set,laddr,fd);
 
+
+    //opener(label_set);
+    //opener2(laddr);
     /*jump to start addr*/
     addr = laddr[mysearch("_min_caml_start", label_set, p)];
     j(addr);
-
+/*
     fd = fopen(argv[1], "rt");
     if (fd == NULL) {
         perror(argv[2]);
         return 1;
     }
 
-
+*/
+    rewind(fd);
     while (fgets(buf, 255, fd) != NULL) {
         if (strlen(buf) > 1) {
             tok = strtok(buf, " \t\n");
