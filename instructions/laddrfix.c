@@ -45,7 +45,7 @@ void laddrfix(char label_set[255][255],uint32_t laddr[0xFF],FILE *fd)
                 imm = strtok(NULL, " \t\n");
                 if (mysearch(imm, label_set, p) == -1) {
                  /* jal r1 */
-                  laddrfix2(laddr,p);
+                  //laddrfix2(laddr,p);
                   p+=0;
                 } else {
                 }
