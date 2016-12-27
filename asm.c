@@ -124,6 +124,7 @@ int main(int argc, char** argv)
                 if (mysearch(imm, label_set, p) == -1) {
                     addi(rs, rd, atoi(imm));
                 } else { /*constがラベルのとき*/
+                    cl+=1;
                     addr = laddr[mysearch(imm, label_set, p)];
                     addi2(rs, rd, addr);
                 }
@@ -194,8 +195,17 @@ int main(int argc, char** argv)
                  j(addr); 
                }
             } else if (strcmp(tok, "jal") == 0) {
-                addr = laddr[mysearch(strtok(NULL, " \t\n"), label_set, p)];
-                jal(addr);
+                imm = strtok(NULL, " \t\n");
+                if (mysearch(imm, label_set, p) == -1) {
+                 /* jal r1 */
+                  cl+=1;
+                  write_bit(ADDI,6);
+                  typeI( 0 ,31 ,(cl+1) );
+                  jr(imm);
+                } else {
+                  addr = laddr[mysearch(imm, label_set, p)];
+                  jal(addr); 
+                }
             } else if (strcmp(tok, "jr") == 0) {
                 rs = strtok(NULL, " \t\n");
                 jr(rs);
