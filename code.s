@@ -9,6 +9,7 @@ f.7:
 	lw	r29 r23 0
 	sw	r31 r30 4
 	addi	r30 r30 8
+	sll r23 r23 2
 	jal	r23
 	addi	r30 r30 -8
 	lw	r30 r31 4
@@ -30,6 +31,7 @@ _min_caml_start:
 	lw	r29 r23 0
 	sw	r31 r30 0
 	addi	r30 r30 4
+	sll r23 r23 2
 	jal	r23
 	addi	r30 r30 -4
 	lw	r30 r31 0

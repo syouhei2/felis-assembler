@@ -13,7 +13,7 @@ void addi2(char *rs,char *rd,unsigned int addr)
   */ 
 
 
-  unsigned int t = addr >> 16;
+  unsigned int t = (addr) >> 16;
 
   write_bit(LUI,6);
   typeI(0,regn(rd),t);
