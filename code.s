@@ -1,38 +1,317 @@
-f.7:
-	lw	r29 r2 4
-	addi	r0 r3 0
-	sub	r1 r3 r25
-	beq	r25 r0 beq_tail_else.20
-	addi	r0 r3 1
-	sub	r1 r3 r1
-	sw	r2 r30 0
-	lw	r29 r23 0
-	sw	r31 r30 4
-	addi	r30 r30 8
-	sll r23 r23 2
-	jal	r23
-	addi	r30 r30 -8
-	lw	r30 r31 4
-	lw	r30 r2 0
-	add	r2 r1 r1
-	jr	r31
-beq_tail_else.20:
-	addi	r0 r1 0
-	jr	r31
+_io_print_char:
+
+    out r1
+
+    jr r31
+
+_io_print_int:
+
+    addi r1 r25 0
+
+    bgez r1 _io_print_int_get_num_digits
+
+    sub r0 r1 r1
+
+    addi r0 r2 45
+
+    out r2
+
+    j _io_print_int
+
+_io_print_int_get_num_digits:
+
+    addi r0 r2 10
+
+    addi r0 r3 1
+
+    sub r1 r2 r25
+
+    bltz r1 _io_print_int_loop
+
+    mult r2 r2 10
+
+    addi r3 r3 1
+
+    j _io_print_int_get_num_digits
+
+_io_print_int_loop:
+
+    addi r3 r25 0
+
+    beq r25 r0 _io_print_int_return
+
+    div r2 r2 10
+
+    addi r3 r3 -1
+
+    div r1 r2 r4
+
+    out r4
+
+    j _io_print_int_loop
+
+_io_print_int_return:
+
+    jr r31
+
+_io_read_int:
+
+    addi r0 r1 0
+
+    addi r0 r2 0
+
+    addi r0 r3 0
+
+_io_read_int_loop:
+
+    in r4
+
+    addi r4 r25 -32
+
+    blez r25 _io_read_int_check_end
+
+    addi r4 r25 -45
+
+    beq r25 r0 _io_read_int_change_sgn
+
+    addi r4 r25 -43
+
+    beq r25 r0 _io_read_int_loop
+
+    addi r4 r4 -48
+
+    multi r1 r1 10
+
+    add r1 r4 r1
+
+    addi r0 r2 1
+
+    j _io_read_int_loop
+
+_io_read_int_change_sgn:
+
+    addi r3 r3 1
+
+    j _io_read_int_loop
+
+_io_read_int_check_end:
+
+    add r2 r0 r25
+
+    beq r25 r0 _io_read_int_loop
+
+    andi r3 r3 1
+
+    addi r3 r25 -1
+
+    beq r25 r0 _io_read_int_return
+
+    sub r0 r1 r1
+
+_io_read_int_return:
+
+    jr r31
+
+_io_read_float:
+
+    addi r0 r2 0
+
+    addi r0 r3 0
+
+    addi r0 r5 0
+
+    addi r0 r6 0
+
+    addi r0 r7 0
+
+    addi r0 r8 10
+
+    mtc1 f0 r0
+
+    mtc1 f1 r0
+
+    mtc1 f31 r8
+
+    cvt.s.w f31 f2
+
+_io_read_float_integer_part:
+
+    in r4
+
+    sub r4 r25 32
+
+    blez r25 _io_read_float_check_end
+
+    addi r4 r25 -45
+
+    beq r25 r0 _io_read_float_change_sgn
+
+    addi r4 r25 -43
+
+    beq r25 r0 _io_read_float_integer_part
+
+    addi r4 r25 -46
+
+    beq r25 r0 _io_read_float_decimal_part
+
+    addi r4 r4 -48
+
+    multi r5 r5 10
+
+    add r5 r4 r5
+
+    addi r0 r2 1
+
+    j _io_read_float_integer_part
+
+_io_read_float_change_sgn:
+
+    addi r3 r3 1
+
+    j _io_read_float_integer_part
+
+_io_read_float_decimal_part:
+
+    in r4
+
+    sub r4 r25 32
+
+    blez _io_read_float_check_end
+
+    addi r4 r4 -48
+
+    multi r6 r6 10
+
+    add r6 r4 r6
+
+    addi r7 r7 1
+
+    j _io_read_float_decimal_part
+
+_io_read_float_check_end:
+
+    addi r2 r25 0
+
+    beq r25 r0 _io_read_float_integer_part
+
+    mtc1 f31 r5
+
+    cvt.s.w f31 f0
+
+    mtc1 f31 r6
+
+    cvt.s.w f31 f1
+
+_io_read_float_divide_decimal:
+
+    addi r7 r25 0
+
+    beq r25 r0 _io_read_float_adapt_sgn
+
+    addi r7 r7 -1
+
+    div.s f1 f2 f1
+
+    j _io_read_float_divide_decimal
+
+_io_read_float_adapt_sgn:
+
+    add.s f1 f2 f0
+
+    andi r3 r3 1
+
+    addi r3 r25 -1
+
+    beq r25 r0 _io_read_float_return
+
+    neg.s f0 f0
+
+_io_read_float_return:
+
+    jr r31
+
 _min_caml_start:
-	lui	r27 32
-	addi	r0 r1 10
-	mov	r29 r27
-	addi	r27 r27 8
-	addi	r0 r2 f.7
-	sw	r2 r29 0
-	sw	r1 r29 4
-	addi	r0 r1 20
-	lw	r29 r23 0
-	sw	r31 r30 0
-	addi	r30 r30 4
-	sll r23 r23 2
-	jal	r23
-	addi	r30 r30 -4
-	lw	r30 r31 0
+
+    lui r27 32
+
+    sw  r31 r30 0
+
+    addi    r30 r30 4
+
+    jal _io_read_int
+
+    addi    r30 r30 -4
+
+    lw  r30 r31 0
+
+    sw  r1 r30 0
+
+    sw  r31 r30 4
+
+    addi    r30 r30 8
+
+    jal _io_read_int
+
+    addi    r30 r30 -8
+
+    lw  r30 r31 4
+
+    lw  r30 r2 0
+
+    add r2 r1 r1
+
+    sw  r31 r30 4
+
+    addi    r30 r30 8
+
+    jal _io_print_int
+
+    addi    r30 r30 -8
+
+    lw  r30 r31 4
+
+    addi    r0 r1 32
+
+    sw  r31 r30 4
+
+    addi    r30 r30 8
+
+    jal _io_print_char
+
+    addi    r30 r30 -8
+
+    lw  r30 r31 4
+
+    sw  r31 r30 4
+
+    addi    r30 r30 8
+
+    jal _io_read_float
+
+    addi    r30 r30 -8
+
+    lw  r30 r31 4
+
+    sw  r31 r30 4
+
+    addi    r30 r30 8
+
+    jal _io_read_float
+
+    addi    r30 r30 -8
+
+    lw  r30 r31 4
+
+    addi    r0 r1 10
+
+    sw  r31 r30 4
+
+    addi    r30 r30 8
+
+    jal _io_print_char
+
+    addi    r30 r30 -8
+
+    lw  r30 r31 4
+
 halt
