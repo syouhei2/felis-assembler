@@ -29,6 +29,9 @@ void laddrfix(char label_set[255][255],uint32_t laddr[0xFF],FILE *fd)
             /*assembla command*/
             if (tok[0] == '.') {
             }
+            /*comment*/
+            else if (tok[0] == '#') {
+            }
             /*label*/
             else if (tok[strlen(tok) - 1] == ':') {
             } else {

@@ -11,6 +11,18 @@ void opener(char[255][255]);
 void opener2(int[255]);
 void laddrfix(char[255][255],uint32_t[255],FILE *);
 
+/*　コメントについて
+　　　　#で始まる行と、命令の引数より後に書かれた文字列は無視されます
+
+　　　　例
+　　　　　　　　　　#comment
+          main:
+             add r1 r2 r3 #comment
+             add r1 r2 r3 comment
+          #comment
+          #comment
+*/
+
 
 int main(int argc, char** argv)
 {
@@ -56,7 +68,7 @@ int main(int argc, char** argv)
 
             /*assembla command*/
             if (tok[0] == '.') {
-                if (strcmp(tok, ".data") == 0)
+                if (strcmp(tok, ".data") == 0)                         
                     dsec = 1;
                 else if (strcmp(tok, ".text") == 0)
                     dsec = 0;
@@ -70,7 +82,11 @@ int main(int argc, char** argv)
                 else
                     laddr[p] = DATASEC + dl;
                 p++;
-            } else {
+            } 
+            /*comment*/
+            else if (tok[0] == '#') {
+            }    
+            else {
                 if (dsec == 0)
                     tl += 1;
                 else
@@ -112,6 +128,9 @@ printf("#%s\n",argv[1]);
                 //if(strcmp(tok,".data") == 0) dsec = 1;
                 //else if( strcmp(tok,".text") == 0) dsec = 0;
                 cl -= 1;
+            }
+            /*comment*/
+            else if (tok[0] == '#') {
             }
 
             /*label*/
@@ -311,7 +330,7 @@ printf("#%s\n",argv[1]);
 void opener(char l[255][255])
 {
     int i;
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < 50; i++) {
         printf("%d : %s\n", i, l[i]);
     }
 }
@@ -319,7 +338,7 @@ void opener(char l[255][255])
 void opener2(int l[255])
 {
     int i;
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < 50; i++) {
         printf("%d : %d\n", i, l[i]);
     }
 }
