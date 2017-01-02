@@ -80,7 +80,7 @@ _io_read_int_loop:
 
     addi r4 r4 -48
 
-    multi r1 r1 10
+    mult r1 r1 10
 
     add r1 r4 r1
 
@@ -156,7 +156,7 @@ _io_read_float_integer_part:
 
     addi r4 r4 -48
 
-    multi r5 r5 10
+    mult r5 r5 10
 
     add r5 r4 r5
 
@@ -176,11 +176,11 @@ _io_read_float_decimal_part:
 
     sub r4 r25 32
 
-    blez _io_read_float_check_end
+    blez r4 _io_read_float_check_end
 
     addi r4 r4 -48
 
-    multi r6 r6 10
+    mult r6 r6 10
 
     add r6 r4 r6
 
