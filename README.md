@@ -12,9 +12,9 @@ ascii2bin.pyは[felis-simulater](https://github.com/ordovicia/felis-simulator)
 
 　　　　例  
 　　　　　　　　　　#comment  
-          main:  
-             add r1 r2 r3 #comment  
-             add r1 r2 r3 comment  
-          #comment  
-          #comment  
+	  main:  
+     	  add r1 r2 r3 #comment  
+       	  add r1 r2 r3 comment  
+      	  #comment  
+       	  #comment  
 
