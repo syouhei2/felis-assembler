@@ -4,11 +4,11 @@
 
 void abs_s()
 {
-  char *fd,*fs,*imm;
+  char *fs,*ft,*imm;
   fs = strtok(NULL," ,");
-  fd = strtok(NULL," ,\n");
+  ft = strtok(NULL," ,\n");
 
   write_bit(ABS_S,6);
-  typeR(regn(fs),0,regn(fd),0);
+  typeI(regn(fs),regn(ft),0);
 
 }

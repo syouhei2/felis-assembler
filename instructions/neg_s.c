@@ -4,11 +4,11 @@
 
 void neg_s()
 {
-  char *fd,*fs,*imm;
+  char *ft,*fs,*imm;
   fs = strtok(NULL," ,");
-  fd = strtok(NULL," ,\n");
+  ft = strtok(NULL," ,\n");
 
   write_bit(NEG_S,6);
-  typeR(regn(fs),0,regn(fd),0);
+  typeI(regn(fs),regn(ft),0);
 
 }

@@ -4,10 +4,10 @@
 
 void lui()
 {
-  char *rd,*imm;
-  rd = strtok(NULL," ");
+  char *rt,*imm;
+  rt = strtok(NULL," ");
   imm = strtok(NULL," ,\n");
   
   write_bit(LUI,6);
-  typeI(regn(rd),regn(rd),atoi(imm));
+  typeI(0,regn(rt),atoi(imm));
 }

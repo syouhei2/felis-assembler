@@ -4,12 +4,12 @@
 
 void swoc1()
 {
-  char *rs,*rt,*fd,*imm;
-  rs = strtok(NULL," ,");
+  char *fs,*rt,*rd,*imm;
+  fs = strtok(NULL," ,");
   rt = strtok(NULL," ,");
-  fd = strtok(NULL," ,\n");
+  rd = strtok(NULL," ,\n");
 
   write_bit(SWOC1,6);
-  typeR(regn(rs),regn(rt),regn(fd),0);
+  typeR(regn(fs),regn(rt),regn(rd),0);
 
 }

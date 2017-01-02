@@ -4,11 +4,11 @@
 
 void mfc1()
 {
-  char *fs,*rd,*imm;
+  char *fs,*rt,*imm;
   fs = strtok(NULL," ,");
-  rd = strtok(NULL," ,\n");
+  rt = strtok(NULL," ,\n");
 
   write_bit(MTC1,6);
-  typeR(regn(fs),0,regn(rd),0);
+  typeI(regn(fs),regn(rt),0);
 
 }

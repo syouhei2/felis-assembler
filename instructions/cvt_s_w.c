@@ -6,9 +6,9 @@ void cvt_s_w()
 {
   char *fs,*ft,*fd,*imm;
   fs = strtok(NULL," ,");
-  fd = strtok(NULL," ,\n");
+  ft = strtok(NULL," ,\n");
 
   write_bit(CVT_S_W,6);
-  typeR(regn(fs),0,regn(fd),0);
+  typeI(regn(fs),regn(ft),0);
 
 }

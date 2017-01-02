@@ -244,7 +244,7 @@ printf("#%s\n",argv[1]);
                 lwo();
             } else if (strcmp(tok, "sw") == 0) {
                 sw();
-            } else if (strcmp(tok, "lw") == 0) {
+            } else if (strcmp(tok, "swo") == 0) {
                 swo();
             } else if (strcmp(tok, "abs.s") == 0) {
                 abs_s();
@@ -266,11 +266,11 @@ printf("#%s\n",argv[1]);
                 mov_s();
             } else if (strcmp(tok, "lwc1") == 0) {
                 lwc1();
-            } else if (strcmp(tok, "lw") == 0) {
+            } else if (strcmp(tok, "lwoc1") == 0) {
                 lwoc1();
             } else if (strcmp(tok, "swc1") == 0) {
                 swc1();
-            } else if (strcmp(tok, "lw") == 0) {
+            } else if (strcmp(tok, "swoc1") == 0) {
                 swoc1();
             } else if (strcmp(tok, "mtc1") == 0) {
                 mtc1();

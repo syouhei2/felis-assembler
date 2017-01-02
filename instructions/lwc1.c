@@ -2,12 +2,12 @@
 
 void lwc1()
 {
-        char *rs,*fd,*imm;
+        char *rs,*ft,*imm;
 
         rs = strtok(NULL," ,");
-        fd = strtok(NULL," ,");
+        ft = strtok(NULL," ,");
         imm = strtok(NULL," ,\n");
 
         write_bit(LWC1,6);
-        typeI(regn(rs),regn(fd),atoi(imm));
+        typeI(regn(rs),regn(ft),atoi(imm));
 }

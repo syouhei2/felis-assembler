@@ -6,6 +6,7 @@
 
 void nop()
 {
-        write_bit(NOP,32);
+        write_bit(NOP,6);
+        write_bit(0,26);
         printf("\n");
 }

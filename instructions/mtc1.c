@@ -4,11 +4,11 @@
 
 void mtc1()
 {
-  char *rs,*fd,*imm;
+  char *rs,*ft,*imm;
   rs = strtok(NULL," ,");
-  fd = strtok(NULL," ,\n");
+  ft = strtok(NULL," ,\n");
 
   write_bit(MTC1,6);
-  typeR(regn(rs),0,regn(fd),0);
+  typeI(regn(rs),regn(ft),0);
 
 }
