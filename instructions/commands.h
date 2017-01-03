@@ -13,6 +13,8 @@
 #define LUI 11
 #define DIV 12
 #define MULT 13
+#define DIVI 14
+#define MULTI 15
 #define SLL 16
 #define SRA 17
 #define SRL 18
@@ -122,3 +124,5 @@ void swo();
 void lwo();
 void lwoc1();
 void swoc1();
+void divi();
+void multi();

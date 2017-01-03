@@ -183,8 +183,12 @@ printf("#%s\n",argv[1]);
                 nor();
             } else if (strcmp(tok, "div") == 0) {
                 mydiv();
+            } else if (strcmp(tok, "divi") == 0) {
+                divi();
             } else if (strcmp(tok, "mult") == 0) {
                 mult();
+            } else if (strcmp(tok, "multi") == 0) {
+                multi();
             } else if (strcmp(tok, "beq") == 0) {
                 rs = strtok(NULL, " ,\t\n");
                 rt = strtok(NULL, " ,\t\n");

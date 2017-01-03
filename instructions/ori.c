@@ -8,6 +8,6 @@ void ori()
         rt = strtok(NULL," ,");
         imm = strtok(NULL," ,\n");
 
-        write_bit(OR,6);
+        write_bit(ORI,6);
         typeI(regn(rs),regn(rt),atoi(imm));
 }

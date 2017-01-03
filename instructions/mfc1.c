@@ -8,7 +8,7 @@ void mfc1()
   fs = strtok(NULL," ,");
   rt = strtok(NULL," ,\n");
 
-  write_bit(MTC1,6);
+  write_bit(MFC1,6);
   typeI(regn(fs),regn(rt),0);
 
 }
