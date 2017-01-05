@@ -93,7 +93,7 @@ void lwc1();
 void mfc1();
 void mov_s();
 void move();
-int mysearch(char* s, char l[255][255], int p);
+int mysearch(char* s, char l[10000][255], int p);
 void mtc1();
 void mul_s();
 void mult();

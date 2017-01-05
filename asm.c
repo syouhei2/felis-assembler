@@ -7,9 +7,9 @@
 #define TEXTSEC 0      //start addr of the text section (/4)
 #define DATASEC 10000  //start addr of the data section (/4)
 
-void opener(char[255][255]);
-void opener2(int[255]);
-void laddrfix(char[255][255],uint32_t[255],FILE *);
+void opener(char[10000][255]);
+void opener2(int[10000]);
+void laddrfix(char[10000][255],uint32_t[10000],FILE *);
 
 /*　コメントについて
 　　　　#で始まる行と、命令の引数より後に書かれた文字列は無視されます
@@ -42,8 +42,8 @@ int main(int argc, char** argv)
 
     uint32_t dl = 0, tl = 1, cl = 1;
 
-    char label_set[255][255];
-    uint32_t laddr[0xFF];
+    char label_set[10000][255];
+    uint32_t laddr[10000];
     int p = 0;
     int dsec = 0;
     int addr;
