@@ -107,6 +107,10 @@ printf("#%s\n",argv[1]);
     //opener(label_set);
     //opener2(laddr);
     /*jump to start addr*/
+    if (mysearch("_min_caml_start", label_set, p) == -1) {
+      printf("label:_min_caml_start was not found\n");
+      return -1;
+    }
     addr = laddr[mysearch("_min_caml_start", label_set, p)];
     j(addr);
 /*
@@ -296,12 +300,12 @@ printf("#%s\n",argv[1]);
 
     write_bit(0xFFFFFFFF, 32);
     printf("\n");
-
+/*
     fd = fopen(argv[1], "rt");
     if (fd == NULL) {
         perror(argv[2]);
         return 1;
-    }
+    }*/
 
     /*
   while( fgets(buf,255,fd) != NULL ){

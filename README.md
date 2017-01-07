@@ -1,7 +1,7 @@
 # Assembler
 
 ```shell
-$ ./asm.sh [asm file]
+$ ./asm.sh [asm files]
 ```
 
 ascii2bin.pyは[felis-simulater](https://github.com/ordovicia/felis-simulator)
