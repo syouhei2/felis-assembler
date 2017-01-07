@@ -17,7 +17,7 @@ int main(int argc,char **argv)
   char *tok;
   /*localなラベル*/
   char llabel_set[10000][255];
-  char *mincaml = "_min_caml";
+  //char *mincaml = "_min_caml";
 
   for (i=1;i<argc;i++) {
     memset(llabel_set,'\0',2550000);
@@ -34,8 +34,8 @@ int main(int argc,char **argv)
         if (strlen(buf) > 1) {
           tok = strtok(buf," ,\t\n"); 
           if (tok[strlen(tok) - 1] == ':') {
-            /*_min_camlで始まるラベルはいじらない*/
-            if ( tok != strstr(tok,mincaml) ){
+            /*_min_caml,min_camlで始まるラベルはいじらない*/
+            if ( (tok != strstr(tok,"min_caml")) && (tok != strstr(tok,"_min_caml")) ){
               strcpy(llabel_set[p], tok);
               p++;
             }  
