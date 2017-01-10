@@ -34,5 +34,7 @@ ascii2bin.pyは[felis-simulater](https://github.com/ordovicia/felis-simulator)
 ```
 などとしてください。標準出力でアセンブリ結果が表示されます。
 オプション
+```
 	・-l : ラベルの一覧とラベルのアドレスが表示されます。表示個数は適当ですが足りなければasm.c内のopener関数をいじってください。
 	・-f : アセンブリのビット列がファイルの何行目と対応しているかを表示します。
+```
