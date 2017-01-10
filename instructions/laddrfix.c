@@ -1,33 +1,25 @@
 #include "commands.h"
 
-void laddrfix2(uint32_t[10000],int);
+void laddrfix2(int[10000],int);
 
-void laddrfix(char label_set[10000][255],uint32_t laddr[10000],FILE *fd)
+void laddrfix(char label_set[10000][255],int laddr[10000],FILE *fd)
 {
 
 
     //FILE* fd;
     char buf[256];
-    int p;
+    int p = 1;
     char *rs,*rt,*rd,*imm,*tok;
 
     int debug_line = 0;
 
 
 
-    //fd = fopen(fn, "rt");
-    //if (fd == NULL) {
-    //    perror(fn);
-    //    return;
-   // }
-
-   //printf("nnn");
-
-
     while (fgets(buf, 255, fd) != NULL) {
         if (strlen(buf) > 1) {
             //debug_line += 1;
             tok = strtok(buf, " \t\n");
+
 
             /*assembla command*/
             if (tok[0] == '.') {
@@ -41,6 +33,7 @@ void laddrfix(char label_set[10000][255],uint32_t laddr[10000],FILE *fd)
                if (strcmp(tok, "addi") == 0) {
                 rs = strtok(NULL, " ,\t");
                 rd = strtok(NULL, " ,\t");
+                rd = rs; rs = rd; //warning消す用
                 imm = strtok(NULL, " ,\t\n");
                 if (mysearch(imm, label_set, 10000) != -1) {
                     /*constがラベルのとき*/
@@ -65,15 +58,14 @@ void laddrfix(char label_set[10000][255],uint32_t laddr[10000],FILE *fd)
 
 
 
-    //fclose(fd);
 }
 
 
 
-void laddrfix2(uint32_t laddr[10000],int n)
+void laddrfix2(int laddr[10000],int n)
 {
   int i;
-  for (i=0;i<255;i++){
+  for (i=0;i<10000;i++){
     if (laddr[i] > n) laddr[i] += 1;
   }
 }

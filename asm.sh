@@ -15,5 +15,5 @@ echo "*** assembler running"
 ./linker $* > new.s
 ./asm new.s > code.txt
 python ascii2bin.py code.txt code.bin
-rm new.s code.txt asm linker
+#rm new.s code.txt asm linker
 echo "*** done"

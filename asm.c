@@ -9,7 +9,7 @@
 
 void opener(char[10000][255]);
 void opener2(int[10000]);
-void laddrfix(char[10000][255],uint32_t[10000],FILE *);
+void laddrfix(char[10000][255],int[10000],FILE *);
 
 /*　コメントについて
 　　　　#で始まる行と、命令の引数より後に書かれた文字列は無視されます
@@ -26,36 +26,53 @@ void laddrfix(char[10000][255],uint32_t[10000],FILE *);
 
 int main(int argc, char** argv)
 {
-
-    /*argment error*/
-    if (argc != 2) {
-        printf("usage: ./asm *.s\n");
-        return 1;
-    }
-
     FILE* fd;
+    char *fn;
     char buf[256];
     char* tok;
     char* rs, *rt, *rd, *imm;
     char* br;
     char* ra = "r31";
 
-    uint32_t dl = 0, tl = 1, cl = 1;
+    uint32_t dl = 0, tl = 1, cl = 1 , fl = 1;
 
     char label_set[10000][255];
-    uint32_t laddr[10000];
+    int laddr[10000];
     int p = 0;
     int dsec = 0;
     int addr;
+
+    int opt_f = 0,opt_l = 0;
 
     union {
         float f;
         int i;
     } u;
 
+    /*argment error*/
+    if (argc < 2) {
+        printf("usage: ./asm -l -f *.s\n");
+        return 1;
+    }
+
+   int i;
+   for(i = 0; i < argc; ++i){
+        if(*argv[i] == '-')
+        switch(*(argv[i] + 1)){
+            case 'f':
+                opt_f = 1;
+                break;
+            case 'l':
+                opt_l = 1;
+                break;
+            default:
+                puts("OPTION ERROR");
+        } else fn = argv[i];
+    }
+
 
     /*get input file discripter*/
-    fd = fopen(argv[1], "rt");
+    fd = fopen(fn, "rt");
     if (fd == NULL) {
         perror(argv[2]);
         return 1;
@@ -103,9 +120,12 @@ printf("#%s\n",argv[1]);
     rewind(fd);
     laddrfix(label_set,laddr,fd);
 
+    if (opt_l) {
+      opener(label_set);
+      opener2(laddr);
+    }
 
-    //opener(label_set);
-    //opener2(laddr);
+
     /*jump to start addr*/
     if (mysearch("_min_caml_start", label_set, p) == -1) {
       printf("label:_min_caml_start was not found\n");
@@ -123,6 +143,7 @@ printf("#%s\n",argv[1]);
 */
     rewind(fd);
     while (fgets(buf, 255, fd) != NULL) {
+        if (opt_f) printf("#line = %d\n",fl++);
         if (strlen(buf) > 1) {
             tok = strtok(buf, " \t\n");
 
@@ -335,7 +356,7 @@ printf("#%s\n",argv[1]);
 }
 
 
-void opener(char l[255][255])
+void opener(char l[10000][255])
 {
     int i;
     for (i = 0; i < 50; i++) {
@@ -343,7 +364,7 @@ void opener(char l[255][255])
     }
 }
 
-void opener2(int l[255])
+void opener2(int l[10000])
 {
     int i;
     for (i = 0; i < 50; i++) {

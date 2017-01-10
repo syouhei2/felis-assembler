@@ -1,5 +1,4 @@
-_min_caml_aaa:
-  add r1 r2 r4
-
-label:
-  halt
+_min_caml_start:
+j:
+  addi r1 r2 j
+lab:
