@@ -36,6 +36,7 @@ int main(int argc,char **argv)
           if (tok[strlen(tok) - 1] == ':') {
             /*_min_caml,min_camlで始まるラベルはいじらない*/
             if ( (tok != strstr(tok,"min_caml")) && (tok != strstr(tok,"_min_caml")) ){
+              tok[strlen(tok) - 1] = '\0';
               strcpy(llabel_set[p], tok);
               p++;
             }  
@@ -49,8 +50,11 @@ int main(int argc,char **argv)
 
       if  (strlen(buf) > 1) {
         tok = strtok(buf," ,\t\n");
-        if (tok[strlen(tok) - 1] != ':') printf("  ");
-        if ( lsearch(tok,llabel_set,p) == 1) printf("(%s)",fn);
+        if (tok[strlen(tok) - 1] != ':') {
+          printf("  ");
+        } else if ( lsearch(tok,llabel_set,p) == 1) {
+          printf("(%s)",fn);
+        }
         printf("%s ",tok); 
 
         while ( (tok = strtok(NULL," ,\t\n")) != NULL){
@@ -73,8 +77,12 @@ int lsearch(char *s,char l[10000][255],int p)
 {
 
   int i = 0;
+  char t[255];
   while(i < p){
-    if(l[i] == strstr(l[i],s) ){ return 1;}
+    strcpy(t,s);
+    if (t[strlen(t) - 1] == ':') t[strlen(t) - 1] = '\0';
+    //printf("t = \n%s\n",t);
+    if( strcmp(t,l[i]) == 0 ){ return 1;}
     i++;
   } 
 
