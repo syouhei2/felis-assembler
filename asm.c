@@ -307,7 +307,7 @@ int main(int argc, char** argv)
                 if (mysearch(imm, label_set, p) == -1) {
                   if (imm[0] == 'r' || imm[0] == 'f') {
                     /* jal r1 */
-                   jalr(imm);
+                   jalr(imm,ra);
                  } else {
                    fprintf(stderr,"label:%s was not found\n",imm);
                    return -1;
