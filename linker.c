@@ -69,6 +69,7 @@ int main(int argc,char **argv)
 
     printf("\n");
   }
+free(fn);free(tok);
 return 0;
 }
 
@@ -84,10 +85,10 @@ int lsearch(char *s,char l[10000][255],int p)
     strcpy(t,s);
     if (t[strlen(t) - 1] == ':') t[strlen(t) - 1] = '\0';
     //printf("t = \n%s\n",t);
-    if( strcmp(t,l[i]) == 0 ){ return 1;}
+    if( strcmp(t,l[i]) == 0 ){ free(t);return 1;}
     i++;
   } 
-
+  free(t);
   return -1;
 }
     

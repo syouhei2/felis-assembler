@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 {
     FILE* fd = NULL;
     char *fn;
-    char buf[256];
+    char buf[256] = {'\0'};
     char* tok;
     char* rs, *rt, *rd, *imm;
     fn = (char *)calloc(255,sizeof(char));
@@ -150,6 +150,12 @@ int main(int argc, char** argv)
     while (fgets(buf, 255, fd) != NULL) {
         if (opt_f) fprintf(stderr,"#line = %d\n",fl++);
         if (strlen(buf) > 1) {
+           //in case
+           rs = (char *)calloc(255,sizeof(char));
+           rt = (char *)calloc(255,sizeof(char));
+           rd = (char *)calloc(255,sizeof(char));
+           imm = (char *)calloc(255,sizeof(char));
+           tok = (char *)calloc(255,sizeof(char));
             tok = strtok(buf, " \t\n");
 
 
@@ -357,6 +363,8 @@ int main(int argc, char** argv)
   }*/
     //fclose(fd);
 
+
+    free(fn);free(rs); free(rt); free(rd); free(imm); free(tok);
     return 0;
 }
 
