@@ -26,29 +26,38 @@ void laddrfix(char[10000][255],int[10000],FILE *);
 
 int main(int argc, char** argv)
 {
-    FILE* fd;
+    FILE* fd = NULL;
     char *fn;
     char buf[256];
     char* tok;
     char* rs, *rt, *rd, *imm;
-    char* br;
+    fn = (char *)calloc(255,sizeof(char));
+    rs = (char *)calloc(255,sizeof(char));
+    rt = (char *)calloc(255,sizeof(char));
+    rd = (char *)calloc(255,sizeof(char));
+    imm = (char *)calloc(255,sizeof(char));
+    tok = (char *)calloc(255,sizeof(char));
     char* ra = "r31";
 
     uint32_t dl = 0, tl = 1, cl = 1 , fl = 1;
 
     char label_set[10000][255];
     int laddr[10000];
+    memset(label_set,'\0',2550000);
+    memset(laddr,0,10000);
+
+
     int p = 0;
     int dsec = 0;
-    int addr;
+    int addr = 0;
 
     int opt_f = 0,opt_l = 0;
-
+/*
     union {
         float f;
         int i;
     } u;
-
+*/
     /*argment error*/
     if (argc < 2) {
         printf("usage: ./asm -l -f *.s\n");
@@ -112,11 +121,7 @@ int main(int argc, char** argv)
         }
     }
 
-    //opener(label_set);
-    //opener2(laddr);
-
-    //fclose(fd);
-printf("#%s\n",fn);
+    printf("#%s\n",fn);
     rewind(fd);
     laddrfix(label_set,laddr,fd);
 

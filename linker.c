@@ -10,14 +10,15 @@ int lsearch(char *,char [10000][255],int);
 
 int main(int argc,char **argv)
 {
-  int i,p;
+  int i = 0,p = 0;
   char *fn;
-  FILE *fd;
-  char buf[255];
+  fn = (char *)calloc(255,sizeof(char));
+  FILE *fd = NULL;
+  char buf[255] = {'\0'};
   char *tok;
+    tok = (char *)calloc(255,sizeof(char));
   /*localなラベル*/
   char llabel_set[10000][255];
-  //char *mincaml = "_min_caml";
 
   for (i=1;i<argc;i++) {
     memset(llabel_set,'\0',2550000);
@@ -77,7 +78,8 @@ int lsearch(char *s,char l[10000][255],int p)
 {
 
   int i = 0;
-  char t[255];
+  char *t;
+  t = (char *)calloc(255,sizeof(char));
   while(i < p){
     strcpy(t,s);
     if (t[strlen(t) - 1] == ':') t[strlen(t) - 1] = '\0';
