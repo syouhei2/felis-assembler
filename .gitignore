@@ -4,6 +4,7 @@ linker
 new.s
 code.txt
 code.bin
+test/*
 
 # Object files
 *.o

@@ -116,7 +116,7 @@ int main(int argc, char** argv)
     //opener2(laddr);
 
     //fclose(fd);
-printf("#%s\n",argv[1]);
+printf("#%s\n",fn);
     rewind(fd);
     laddrfix(label_set,laddr,fd);
 
@@ -143,7 +143,7 @@ printf("#%s\n",argv[1]);
 */
     rewind(fd);
     while (fgets(buf, 255, fd) != NULL) {
-        if (opt_f) printf("#line = %d\n",fl++);
+        if (opt_f) fprintf(stderr,"#line = %d\n",fl++);
         if (strlen(buf) > 1) {
             tok = strtok(buf, " \t\n");
 
@@ -360,7 +360,7 @@ void opener(char l[10000][255])
 {
     int i;
     for (i = 0; i < 50; i++) {
-        printf("%d : %s\n", i, l[i]);
+        fprintf(stderr,"%d : %s\n", i, l[i]);
     }
 }
 
@@ -368,6 +368,6 @@ void opener2(int l[10000])
 {
     int i;
     for (i = 0; i < 50; i++) {
-        printf("%d : %d\n", i, l[i]);
+        fprintf(stderr,"%d : %d\n", i, l[i]);
     }
 }
