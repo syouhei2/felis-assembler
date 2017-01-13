@@ -7,8 +7,8 @@
 #define TEXTSEC 0      //start addr of the text section (/4)
 #define DATASEC 10000  //start addr of the data section (/4)
 
-void opener(char[10000][255]);
-void opener2(int[10000]);
+void opener(char[10000][255],int);
+void opener2(int[10000],int);
 void laddrfix(char[10000][255],int[10000],FILE *);
 
 /*　コメントについて
@@ -42,6 +42,7 @@ int main(int argc, char** argv)
 
 
     int p = 0;
+    int openl = 50;
     int dsec = 0;
     int addr = 0;
 
@@ -67,6 +68,10 @@ int main(int argc, char** argv)
                 break;
             case 'l':
                 opt_l = 1;
+                if(*argv[i+1] != '-') {
+                  openl = atoi(argv[i+1]);
+                  i++;
+                }
                 break;
             default:
                 puts("OPTION ERROR");
@@ -120,14 +125,14 @@ int main(int argc, char** argv)
     laddrfix(label_set,laddr,fd);
 
     if (opt_l) {
-      opener(label_set);
-      opener2(laddr);
+      opener(label_set,openl);
+      opener2(laddr,openl);
     }
 
 
     /*jump to start addr*/
     if (mysearch("_min_caml_start", label_set, p) == -1) {
-      printf("label:_min_caml_start was not found\n");
+      fprintf(stderr,"label:_min_caml_start was not found\n");
       return -1;
     }
     addr = laddr[mysearch("_min_caml_start", label_set, p)];
@@ -144,12 +149,12 @@ int main(int argc, char** argv)
     while (fgets(buf, 255, fd) != NULL) {
         if (opt_f) fprintf(stderr,"#line = %d\n",fl++);
         if (strlen(buf) > 1) {
-           //in case
+           /*//in case
            rs = (char *)calloc(255,sizeof(char));
            rt = (char *)calloc(255,sizeof(char));
            rd = (char *)calloc(255,sizeof(char));
            imm = (char *)calloc(255,sizeof(char));
-           tok = (char *)calloc(255,sizeof(char));
+           tok = (char *)calloc(255,sizeof(char)); */
             tok = strtok(buf, " \t\n");
 
 
@@ -222,37 +227,77 @@ int main(int argc, char** argv)
             } else if (strcmp(tok, "beq") == 0) {
                 rs = strtok(NULL, " ,\t\n");
                 rt = strtok(NULL, " ,\t\n");
-                addr = laddr[mysearch(strtok(NULL, " ,\t\n"), label_set, p)];
+                imm = strtok(NULL, " ,\t\n");
+                if (mysearch(imm, label_set, p) == -1) {
+                   fprintf(stderr,"label:%s was not found\n",imm);
+                   return -1;
+                 }
+                addr = laddr[mysearch(imm, label_set, p)];
                 beq(rs, rt, addr - cl);
             } else if (strcmp(tok, "bgez") == 0) {
                 rs = strtok(NULL, " ,\n");
-                addr = laddr[mysearch(strtok(NULL, " ,\t\n"), label_set, p)];
+                imm = strtok(NULL, " ,\t\n");
+                if (mysearch(imm, label_set, p) == -1) {
+                   fprintf(stderr,"label:%s was not found\n",imm);
+                   return -1;
+                 }
+                addr = laddr[mysearch(imm, label_set, p)];
                 bgez(rs, addr - cl);
             } else if (strcmp(tok, "bgtz") == 0) {
                 rs = strtok(NULL, " ,\t\n");
-                addr = laddr[mysearch(strtok(NULL, " ,\t\n"), label_set, p)];
+                imm = strtok(NULL, " ,\t\n");
+                if (mysearch(imm, label_set, p) == -1) {
+                   fprintf(stderr,"label:%s was not found\n",imm);
+                   return -1;
+                 }
+                addr = laddr[mysearch(imm, label_set, p)];
                 bgtz(rs, addr - cl);
             } else if (strcmp(tok, "blez") == 0) {
                 rs = strtok(NULL, " ,\t\n");
-                addr = laddr[mysearch(strtok(NULL, " ,\t\n"), label_set, p)];
+                imm = strtok(NULL, " ,\t\n");
+                if (mysearch(imm, label_set, p) == -1) {
+                   fprintf(stderr,"label:%s was not found\n",imm);
+                   return -1;
+                 }
+                addr = laddr[mysearch(imm, label_set, p)];
                 blez(rs, addr - cl);
             } else if (strcmp(tok, "bltz") == 0) {
                 rs = strtok(NULL, " ,\t\n");
-                addr = laddr[mysearch(strtok(NULL, " ,\t\n"), label_set, p)];
+                imm = strtok(NULL, " ,\t\n");
+                if (mysearch(imm, label_set, p) == -1) {
+                   fprintf(stderr,"label:%s was not found\n",imm);
+                   return -1;
+                 }
+                addr = laddr[mysearch(imm, label_set, p)];
                 bltz(rs, addr - cl);
             } else if (strcmp(tok, "bgezal") == 0) {
                 rs = strtok(NULL, " ,\t\n");
-                addr = laddr[mysearch(strtok(NULL, " ,\t\n"), label_set, p)];
+                imm = strtok(NULL, " ,\t\n");
+                if (mysearch(imm, label_set, p) == -1) {
+                   fprintf(stderr,"label:%s was not found\n",imm);
+                   return -1;
+                 }
+                addr = laddr[mysearch(imm, label_set, p)];
                 bgezal(rs, addr - cl);
             } else if (strcmp(tok, "bltzal") == 0) {
                 rs = strtok(NULL, " ,\t\n");
-                addr = laddr[mysearch(strtok(NULL, " ,\t\n"), label_set, p)];
+                imm = strtok(NULL, " ,\t\n");
+                if (mysearch(imm, label_set, p) == -1) {
+                   fprintf(stderr,"label:%s was not found\n",imm);
+                   return -1;
+                 }
+                addr = laddr[mysearch(imm, label_set, p)];
                 bltzal(rs, addr - cl);
             } else if (strcmp(tok, "j") == 0) {
                imm = strtok(NULL, " \t\n");
                if (mysearch(imm, label_set, p) == -1) {
-                 /* j r1 */
-                 jr(imm);
+                 if (imm[0] == 'r' || imm[0] == 'f') {
+                    /* j r1 */
+                   jr(imm);
+                 } else {
+                   fprintf(stderr,"label:%s was not found\n",imm);
+                   return -1;
+                 }
                } else {
                  addr = laddr[mysearch(imm, label_set, p)];
                  j(addr); 
@@ -260,7 +305,13 @@ int main(int argc, char** argv)
             } else if (strcmp(tok, "jal") == 0) {
                 imm = strtok(NULL, " \t\n");
                 if (mysearch(imm, label_set, p) == -1) {
-                  jalr(imm,ra);
+                  if (imm[0] == 'r' || imm[0] == 'f') {
+                    /* jal r1 */
+                   jalr(imm);
+                 } else {
+                   fprintf(stderr,"label:%s was not found\n",imm);
+                   return -1;
+                 }
                 } else {
                   addr = laddr[mysearch(imm, label_set, p)];
                   jal(addr); 
@@ -362,18 +413,18 @@ int main(int argc, char** argv)
 }
 
 
-void opener(char l[10000][255])
+void opener(char l[10000][255],int open)
 {
     int i;
-    for (i = 0; i < 50; i++) {
+    for (i = 0; i < open; i++) {
         fprintf(stderr,"%d : %s\n", i, l[i]);
     }
 }
 
-void opener2(int l[10000])
+void opener2(int l[10000],int open)
 {
     int i;
-    for (i = 0; i < 50; i++) {
+    for (i = 0; i < open; i++) {
         fprintf(stderr,"%d : %d\n", i, l[i]);
     }
 }
