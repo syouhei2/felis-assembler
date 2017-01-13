@@ -27,16 +27,10 @@ void laddrfix(char[10000][255],int[10000],FILE *);
 int main(int argc, char** argv)
 {
     FILE* fd = NULL;
-    char *fn;
+    char *fn = NULL;
     char buf[256] = {'\0'};
     char* tok;
-    char* rs, *rt, *rd, *imm;
-    fn = (char *)calloc(255,sizeof(char));
-    rs = (char *)calloc(255,sizeof(char));
-    rt = (char *)calloc(255,sizeof(char));
-    rd = (char *)calloc(255,sizeof(char));
-    imm = (char *)calloc(255,sizeof(char));
-    tok = (char *)calloc(255,sizeof(char));
+    char* rs = NULL, *rt = NULL, *rd = NULL, *imm = NULL;
     char* ra = "r31";
 
     uint32_t dl = 0, tl = 1, cl = 1 , fl = 1;
@@ -364,7 +358,6 @@ int main(int argc, char** argv)
     //fclose(fd);
 
 
-    free(fn);free(rs); free(rt); free(rd); free(imm); free(tok);
     return 0;
 }
 

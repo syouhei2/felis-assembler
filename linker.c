@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 
 int lsearch(char *,char [10000][255],int);
@@ -11,19 +12,16 @@ int lsearch(char *,char [10000][255],int);
 int main(int argc,char **argv)
 {
   int i = 0,p = 0;
-  char *fn;
-  fn = (char *)calloc(255,sizeof(char));
+  char *fn = NULL;
   FILE *fd = NULL;
   char buf[255] = {'\0'};
-  char *tok;
-    tok = (char *)calloc(255,sizeof(char));
+  char *tok = NULL;
   /*localなラベル*/
   char llabel_set[10000][255];
 
   for (i=1;i<argc;i++) {
     memset(llabel_set,'\0',2550000);
     p = 0;
-
     fn = argv[i];
     fd = fopen(argv[i], "rt");
     if (fd == NULL) {
@@ -69,7 +67,6 @@ int main(int argc,char **argv)
 
     printf("\n");
   }
-free(fn);free(tok);
 return 0;
 }
 

@@ -9,12 +9,7 @@ void laddrfix(char label_set[10000][255],int laddr[10000],FILE *fd)
     //FILE* fd;
     char buf[256] = {'\0'};
     int p = 1;
-    char *rs,*rt,*rd,*imm,*tok;
-    rs = (char *)calloc(255,sizeof(char));
-    rt = (char *)calloc(255,sizeof(char));
-    rd = (char *)calloc(255,sizeof(char));
-    imm = (char *)calloc(255,sizeof(char));
-    tok = (char *)calloc(255,sizeof(char));
+    char *rs = NULL,*rt = NULL,*rd = NULL,*imm = NULL,*tok = NULL;
 
     int debug_line = 0;
 
@@ -61,8 +56,6 @@ void laddrfix(char label_set[10000][255],int laddr[10000],FILE *fd)
         }
     }
 
-
-  free(rs); free(rt); free(rd); free(imm); free(tok);
 
 
 }
