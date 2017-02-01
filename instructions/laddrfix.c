@@ -22,10 +22,11 @@ void laddrfix(char label_set[10000][255],int laddr[10000],FILE *fd)
 
 
             /*assembla command*/
-            if (tok[0] == '.') {
-            }
+            //if (tok[0] == '.') {
+            //}
             /*comment*/
-            else if (tok[0] == '#') {
+            //else
+            if (tok[0] == '#') {
             }
             /*label*/
             else if (tok[strlen(tok) - 1] == ':') {

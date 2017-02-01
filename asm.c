@@ -92,14 +92,15 @@ int main(int argc, char** argv)
             tok = strtok(buf, " \t\n");
 
             /*assembla command*/
-            if (tok[0] == '.') {
+           /* if (tok[0] == '.') {
                 if (strcmp(tok, ".data") == 0)                         
                     dsec = 1;
                 else if (strcmp(tok, ".text") == 0)
                     dsec = 0;
-            }
+            }*/
             /*label*/
-            else if (tok[strlen(tok) - 1] == ':') {
+            //else
+            if (tok[strlen(tok) - 1] == ':') {
                 tok[strlen(tok) - 1] = '\0';
                 strcpy(label_set[p], tok);
                 if (dsec == 0)
@@ -159,13 +160,14 @@ int main(int argc, char** argv)
 
 
             /*assembla command*/
-            if (tok[0] == '.') {
+            /*if (tok[0] == '.') {
                 //if(strcmp(tok,".data") == 0) dsec = 1;
                 //else if( strcmp(tok,".text") == 0) dsec = 0;
                 cl -= 1;
-            }
+            }*/
             /*comment*/
-            else if (tok[0] == '#') {
+            //else 
+            if (tok[0] == '#') {
             }
 
             /*label*/
