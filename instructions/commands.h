@@ -55,6 +55,7 @@
 #define CVT_S_W 60
 #define CVT_W_S 61
 #define MOV_S 62
+#define SQRT_S 63
 
 void abs_s();
 void add();
@@ -126,3 +127,4 @@ void lwoc1();
 void swoc1();
 void divi();
 void multi();
+void sqrt_s();

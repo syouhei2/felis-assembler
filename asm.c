@@ -363,7 +363,9 @@ int main(int argc, char** argv)
                 mtc1();
             } else if (strcmp(tok, "mfc1") == 0) {
                 mfc1();
-            } else if (strcmp(tok, "mov") == 0) {
+            } else if (strcmp(tok, "sqrt.s") == 0) {
+                sqrt_s();
+            }else if (strcmp(tok, "mov") == 0) {
                 /*疑似命令*/
                 move();
             } else {
@@ -377,7 +379,7 @@ int main(int argc, char** argv)
 
     fclose(fd);
 
-    write_bit(0xFFFFFFFF, 32);
+    //write_bit(0xFFFFFFFF, 32);
     printf("\n");
 /*
     fd = fopen(argv[1], "rt");
