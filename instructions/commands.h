@@ -57,6 +57,10 @@
 #define MOV_S 62
 #define SQRT_S 63
 
+extern int fl;
+void isimm(char *s);
+void isreg(char *s);
+void isfreg(char *s);
 void abs_s();
 void add();
 void add_s();

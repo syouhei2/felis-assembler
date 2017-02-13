@@ -4,8 +4,11 @@ void multi()
 {
        char *rs,*rt,*rd,*imm;
        rs = strtok(NULL," ,");
+       isreg(rs);
        rt = strtok(NULL," ,");
+       isreg(rt);
        imm = strtok(NULL," ,\n");
+       isimm(imm);
 
         write_bit(MULTI,6);
         typeI(regn(rs),regn(rt),atoi(imm));
