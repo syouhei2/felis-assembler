@@ -11,6 +11,6 @@ make
 echo "*** assembler running"
 ./linker $* > linked.s
 python3 remove_no_effect.py linked.s
-./asm linked.s.removed > code.txt
+./asm linked_removed.s > code.txt
 python ascii2bin.py code.txt code.bin
 echo "*** done"

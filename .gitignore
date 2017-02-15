@@ -2,7 +2,7 @@
 asm
 linker
 linked.s
-linked.s.removed
+linked_removed.s
 code.txt
 code.bin
 test/

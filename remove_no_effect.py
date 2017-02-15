@@ -23,7 +23,7 @@ def mov_s_same(l):
 remove_funcs = [addi_0, divi_1, mult_1, mov_same, mov_s_same]
 
 f_in = open(sys.argv[1])
-f_out = open(sys.argv[1].replace('.s', '.s.removed'), 'w')
+f_out = open(sys.argv[1].replace('.s', '_removed.s'), 'w')
 cnt = 0
 for l in f_in:
     l2 = l.split()
