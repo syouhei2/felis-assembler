@@ -1,7 +1,8 @@
 *~
 asm
 linker
-new.s
+linked.s
+linked.s.removed
 code.txt
 code.bin
 test/
