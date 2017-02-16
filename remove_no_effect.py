@@ -8,23 +8,26 @@ def addi_0(l):
 def mov_same(l):
     return l[0] == "mov" and l[1] == l[2]
 
+
 remove_funcs = [addi_0, mov_same]
 remove_cnt = {f.__name__: 0 for f in remove_funcs}
 
-f_in = open(sys.argv[1])
-f_out = open(sys.argv[1].replace('.s', '_removed.s'), 'w')
-for l in f_in:
-    l2 = l.split()
-    if len(l2) == 0:
+file_in = open(sys.argv[1])
+file_out = open(sys.argv[1].replace('.s', '_removed.s'), 'w')
+
+for l in file_in:
+    l_split = l.split()
+    if len(l_split) == 0:
         continue
     removed = False
     for f in remove_funcs:
-        if f(l2):
-            print("removed", l, end="")
+        if f(l_split):
+            print("removed:", l, end="")
             remove_cnt[f.__name__] += 1
             removed = True
             break
     if removed:
         continue
-    f_out.write(l)
+    file_out.write(l)
+
 print(remove_cnt, "instructions removed")
