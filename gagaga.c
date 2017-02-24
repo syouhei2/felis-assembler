@@ -48,6 +48,7 @@ int main(int argc, char** argv)
     int dsec = 0;
     int addr = 0;
     
+    int gagaga[60] = {666666};
 
     int opt_f = 0,opt_l = 0;
 /*
@@ -193,8 +194,8 @@ int main(int argc, char** argv)
                 rd = strtok(NULL, " ,\t");
                 isreg(rd);
                 imm = strtok(NULL, " ,\t\n");
+                isimm(imm);
                 if (mysearch(imm, label_set, p) == -1) {
-                    isimm(imm);
                     addi(rs, rd, atoi(imm));
                 } else { /*constがラベルのとき*/
                     cl+=1;
